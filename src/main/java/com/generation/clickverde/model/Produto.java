@@ -31,17 +31,17 @@ public class Produto {
 	@Column(length = 100)
 	private String nome;
 	
-	@NotBlank(message = "A descrição do produto é obrigatória.")
-	@Size(max = 10000, message = "A descrição pode ter no máximo 10000 caracteres.")
-	@Column(length = 10000)
-	private String descricao;
-	
 	@NotNull(message = "O preço do produto é obrigatório.")
 	@Column(precision = 8, scale = 2) //= DECIMAL(8,2)
 	private BigDecimal preco;
 
 	@NotNull(message = "A quantidade disponível do produto deve ser no mínimo 0.")
-	private Integer quantidadeDisponivel;
+	private Integer quantidade;
+	
+	@NotBlank(message = "A descrição do produto é obrigatória.")
+	@Size(max = 10000, message = "A descrição pode ter no máximo 10000 caracteres.")
+	@Column(length = 10000)
+	private String descricao;
 
 	@NotNull(message = "A foto do produto é obrigatória.")
 	@Size(max = 300, message = "A URL da foto deve ter no máximo 300 caracteres")
@@ -49,7 +49,7 @@ public class Produto {
 	private String foto;
 
 	@NotNull(message = "A quantidade de vendas de um produto sempre começa em 0.")
-	private Integer quantidadeVendas;
+	private Integer vendas;
 
 	@NotNull(message = "Os likes de um produto sempre começam em 0.")
 	private Integer likes;
@@ -58,11 +58,11 @@ public class Produto {
 	private LocalDateTime data;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("produto")
+	@JsonIgnoreProperties("produtos")
 	private Categoria categoria;
 
 	@ManyToOne
-	@JsonIgnoreProperties("usuario")
+	@JsonIgnoreProperties("produtos")
 	private Usuario usuario;
 
 	public Long getId() {
@@ -81,14 +81,6 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 	public BigDecimal getPreco() {
 		return preco;
 	}
@@ -97,12 +89,20 @@ public class Produto {
 		this.preco = preco;
 	}
 
-	public Integer getQuantidadeDisponivel() {
-		return quantidadeDisponivel;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQuantidadeDisponivel(Integer quantidadeDisponivel) {
-		this.quantidadeDisponivel = quantidadeDisponivel;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getFoto() {
@@ -113,12 +113,12 @@ public class Produto {
 		this.foto = foto;
 	}
 
-	public Integer getQuantidadeVendas() {
-		return quantidadeVendas;
+	public Integer getVendas() {
+		return vendas;
 	}
 
-	public void setQuantidadeVendas(Integer quantidadeVendas) {
-		this.quantidadeVendas = quantidadeVendas;
+	public void setVendas(Integer vendas) {
+		this.vendas = vendas;
 	}
 
 	public Integer getLikes() {
@@ -144,6 +144,7 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -151,4 +152,6 @@ public class Produto {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+
 }
