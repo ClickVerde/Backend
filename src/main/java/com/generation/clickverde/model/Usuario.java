@@ -54,7 +54,7 @@ public class Usuario {
 	@Pattern(regexp = "^(Cliente|Loja)$", message = "O tipo deve ser 'Cliente' ou 'Loja'")
 	private String tipo;
 	
-	@NotBlank(message = "O atributo foto é obrigatório")
+	
 	private String foto;
 	
 	@UpdateTimestamp

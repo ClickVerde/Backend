@@ -16,6 +16,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -35,8 +36,8 @@ public class Produto {
 	@Column(precision = 8, scale = 2) //= DECIMAL(8,2)
 	private BigDecimal preco;
 
-	@NotNull(message = "A quantidade disponível do produto deve ser no mínimo 0.")
-	private Integer quantidade;
+	@PositiveOrZero(message = "O valor quantidade precisa ser positivo")
+	private Integer quantidade = 0;
 	
 	@NotBlank(message = "A descrição do produto é obrigatória.")
 	@Size(max = 10000, message = "A descrição pode ter no máximo 10000 caracteres.")
@@ -47,12 +48,12 @@ public class Produto {
 	@Size(max = 300, message = "A URL da foto deve ter no máximo 300 caracteres")
 	@Column(length = 300)
 	private String foto;
+	
+	@PositiveOrZero(message = "O valor vendas precisa ser positivo")
+	private Integer vendas = 0;
 
-	@NotNull(message = "A quantidade de vendas de um produto sempre começa em 0.")
-	private Integer vendas;
-
-	@NotNull(message = "Os likes de um produto sempre começam em 0.")
-	private Integer likes;
+	@PositiveOrZero(message = "O valor likes precisa ser positivo")
+	private Integer likes = 0;
 
 	@UpdateTimestamp
 	private LocalDateTime data;
