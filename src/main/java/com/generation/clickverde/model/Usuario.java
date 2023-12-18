@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table (name = "tb_usuarios")
+@Table(name = "tb_usuarios")
 public class Usuario {
 	
 	@Id
@@ -29,22 +30,27 @@ public class Usuario {
 	
 	@NotBlank(message = "O atributo nome é obrigatório")
 	@Size(min = 5, max = 60, message = "O atributo título deve conter no mínimo 05 e no máximo 60 caracteres")
+	@Column(length = 60)
 	private String nome;
 	
 	@NotBlank(message = "O atributo email é obrigatório")
 	@Size(max = 255, message = "O atributo email deve conter no máximo 255 caracteres")
+	@Column(length = 255)
 	private String email;
 	
 	@NotBlank(message = "O atributo senha é obrigatório")
 	@Size(max = 60, message = "O atributo senha deve conter no máximo 60 caracteres")
+	@Column(length = 60)
 	private String senha;
 	
 	@NotBlank(message = "O atributo cpf_cnpj é obrigatório")
 	@Size(max = 40, message = "O atributo cpf-cnpj deve conter no máximo 40 caracteres")
+	@Column(length = 40)
 	private String cpf_cnpj;
 	
 	@NotBlank(message = "O atributo tipo é obrigatório")
 	@Size(max = 15, message = "O atributo tipo deve conter no máximo 15 caracteres")
+	@Column(length = 15)
 	@Pattern(regexp = "^(Cliente|Loja)$", message = "O tipo deve ser 'Cliente' ou 'Loja'")
 	private String tipo;
 	
