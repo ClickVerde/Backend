@@ -26,6 +26,7 @@ public class Categoria {
 	@NotBlank(message = "O atributo foto é obrigatório")
 	private String foto;
 	
+	
 //	Lista de produtos atrelados a categoria (a tabela produtos ainda vai ser criada)
 	
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
