@@ -29,12 +29,12 @@ public class Usuario {
 	private Long id;
 	
 	@NotBlank(message = "O atributo nome é obrigatório")
-	@Size(min = 5, max = 60, message = "O atributo título deve conter no mínimo 05 e no máximo 60 caracteres")
+	@Size(min = 3, max = 60, message = "O atributo nome deve conter no mínimo 03 e no máximo 60 caracteres")
 	@Column(length = 60)
 	private String nome;
 	
 	@NotBlank(message = "O atributo email é obrigatório")
-	@Email(message = "O email deve ser válido")
+	@Email(message = "O atributo email deve ser um email válido")
 	@Size(max = 255, message = "O atributo email deve conter no máximo 255 caracteres")
 	@Column(length = 255)
 	private String email;
