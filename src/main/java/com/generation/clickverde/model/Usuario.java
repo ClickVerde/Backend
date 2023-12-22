@@ -16,8 +16,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -34,6 +34,7 @@ public class Usuario {
 	private String nome;
 	
 	@NotBlank(message = "O atributo email é obrigatório")
+	@Email(message = "O email deve ser válido")
 	@Size(max = 255, message = "O atributo email deve conter no máximo 255 caracteres")
 	@Column(length = 255)
 	private String email;
@@ -51,10 +52,10 @@ public class Usuario {
 	@NotBlank(message = "O atributo tipo é obrigatório")
 	@Size(max = 15, message = "O atributo tipo deve conter no máximo 15 caracteres")
 	@Column(length = 15)
-	@Pattern(regexp = "^(Cliente|Loja)$", message = "O tipo deve ser 'Cliente' ou 'Loja'")
 	private String tipo;
 	
-	
+	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
+	@Column(length = 5000)
 	private String foto;
 	
 	@UpdateTimestamp
@@ -78,30 +79,6 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return email;
-	}
-
-	public void setDescricao(String descricao) {
-		this.email = descricao;
-	}
-
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
-	public LocalDateTime getData() {
-		return data;
-	}
-
-	public void setData(LocalDateTime data) {
-		this.data = data;
 	}
 
 	public String getEmail() {
@@ -134,6 +111,22 @@ public class Usuario {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	public void setData(LocalDateTime data) {
+		this.data = data;
 	}
 
 	public List<Produto> getProdutos() {

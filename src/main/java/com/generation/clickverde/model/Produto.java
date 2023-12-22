@@ -37,7 +37,7 @@ public class Produto {
 	private BigDecimal preco;
 
 	@PositiveOrZero(message = "O valor quantidade precisa ser positivo")
-	private Integer quantidade = 0;
+	private Long quantidade = 0L;
 	
 	@NotBlank(message = "A descrição do produto é obrigatória.")
 	@Size(max = 10000, message = "A descrição pode ter no máximo 10000 caracteres.")
@@ -50,10 +50,10 @@ public class Produto {
 	private String foto;
 	
 	@PositiveOrZero(message = "O valor vendas precisa ser positivo")
-	private Integer vendas = 0;
+	private Long vendas = 0L;
 
 	@PositiveOrZero(message = "O valor likes precisa ser positivo")
-	private Integer likes = 0;
+	private Long likes = 0L;
 
 	@UpdateTimestamp
 	private LocalDateTime data;
@@ -63,7 +63,7 @@ public class Produto {
 	private Categoria categoria;
 
 	@ManyToOne
-	@JsonIgnoreProperties("produtos")
+	@JsonIgnoreProperties("produtos, senha")
 	private Usuario usuario;
 
 	public Long getId() {
@@ -90,11 +90,11 @@ public class Produto {
 		this.preco = preco;
 	}
 
-	public Integer getQuantidade() {
+	public Long getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Integer quantidade) {
+	public void setQuantidade(Long quantidade) {
 		this.quantidade = quantidade;
 	}
 
@@ -114,19 +114,19 @@ public class Produto {
 		this.foto = foto;
 	}
 
-	public Integer getVendas() {
+	public Long getVendas() {
 		return vendas;
 	}
 
-	public void setVendas(Integer vendas) {
+	public void setVendas(Long vendas) {
 		this.vendas = vendas;
 	}
 
-	public Integer getLikes() {
+	public Long getLikes() {
 		return likes;
 	}
 
-	public void setLikes(Integer likes) {
+	public void setLikes(Long likes) {
 		this.likes = likes;
 	}
 
