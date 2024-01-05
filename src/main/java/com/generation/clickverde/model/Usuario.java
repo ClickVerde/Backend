@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +34,7 @@ public class Usuario {
 	@Column(length = 60)
 	private String nome;
 	
+	@Schema(example = "email@email.com.br")
 	@NotBlank(message = "O atributo email é obrigatório")
 	@Email(message = "O atributo email deve ser um email válido")
 	@Size(max = 255, message = "O atributo email deve conter no máximo 255 caracteres")
